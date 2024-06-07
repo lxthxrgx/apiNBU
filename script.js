@@ -4,10 +4,8 @@ function fetchCurrencyRates() {
     fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
         .then(response => response.json())
         .then(data => {
-            // Очищаємо список валют перед оновленням
             currencyList.innerHTML = '';
 
-            // Додаємо кожну валюту до списку
             data.forEach(currency => {
                 const currencyItem = document.createElement('div');
                 currencyItem.classList.add('currency-item');
@@ -29,8 +27,6 @@ function fetchCurrencyRates() {
         .catch(error => console.log('Помилка при отриманні даних:', error));
 }
 
-// Оновлюємо курс валют кожні 5 секунд
 setInterval(fetchCurrencyRates, 5000);
 
-// Отримуємо курс валют при завантаженні сторінки
 fetchCurrencyRates();
